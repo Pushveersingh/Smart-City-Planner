@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Smart City Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>🏙️ Smart City Planner</h1>
+  <p>Routing · Road Network · Delivery Scheduling · Budget Planning — powered by DAA algorithms</p>
+</header>
+<nav>
+  <button class="tab active" data-tab="route">🚗 Route Finder</button>
+  <button class="tab" data-tab="net">🛣️ Road Network</button>
+  <button class="tab" data-tab="deliv">📦 Delivery Scheduler</button>
+  <button class="tab" data-tab="proj">💰 Project Budget</button>
+</nav>
+<main>
+<section id="route" class="panel active">
+  <h2>Shortest Route Finder <small>Dijkstra · Greedy · O((V+E) log V)</small></h2>
+  <div class="controls">
+    <label>From <select id="src"></select></label>
+    <label>To <select id="dst"></select></label>
+    <button id="rgo" class="primary">Find Route</button>
+  </div>
+  <svg id="map1" viewBox="0 0 640 380"></svg>
+  <div class="stats" id="rstats">Pick two places and click Find Route.</div>
+</section>
+
+<section id="net" class="panel">
+  <h2>Cheapest Road Network <small>Kruskal · Greedy + Union-Find · O(E log E)</small></h2>
+  <div class="controls"><button id="ngo" class="primary">Build Cheapest Network</button><button id="nrst">Reset</button></div>
+  <svg id="map2" viewBox="0 0 640 380"></svg>
+  <div class="stats" id="nstats">Connect every zone at minimum cost (edge label = cost in lakh).</div>
+</section>
+
+<section id="deliv" class="panel">
+  <h2>Delivery Scheduler <small>Bubble Sort O(n²) vs Merge Sort O(n log n)</small></h2>
+  <div class="controls">
+    <label>Deliveries <input type="number" id="dn" value="3000" min="10" max="8000"></label>
+    <button id="dgo" class="primary">Sort &amp; Compare</button>
+  </div>
+  <div id="dres"></div>
+</section>
+
+<section id="proj" class="panel">
+  <h2>Project Budget Planner <small>0/1 Knapsack · Dynamic Programming · O(n·W)</small></h2>
+  <div class="controls">
+    <label>Budget (crore) <input type="number" id="bud" value="15" min="1" max="40"></label>
+    <button id="pgo" class="primary">Select Best Projects</button>
+  </div>
+  <div id="plist" class="cards"></div>
+  <div class="stats" id="pstats"></div>
+</section>
+</main>
+<footer>Mini Project · Design &amp; Analysis of Algorithms</footer>
+<script src="app.js"></script>
+</body>
+</html>
